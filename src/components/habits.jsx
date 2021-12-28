@@ -12,10 +12,19 @@ class Habits extends Component {
 
     handleIncrement = (habit) => { 
        console.log(`handleIncrement ${habit.name}`);
+       const habits = [...this.state.habits]; //...는 똑같은형태의 배열껍데기 복사
+       const index = habits.indexOf(habit);
+       habits[index].count++;
+       this.setState({habits: habits});  //key와 value
     };
     
     handleDecrement = (habit) => {
         console.log(`handleDecrement ${habit.name}`);
+       const habits = [...this.state.habits];
+       const index = habits.indexOf(habit);
+       const count = habits[index].count - 1;
+       habits[index].count = count < 0 ? 0 : count;
+       this.setState({habits: habits});   
     };
 
     handleDelete = (habit) => {
