@@ -12,7 +12,7 @@ class Habits extends Component {
 
     handleIncrement = (habit) => { 
        console.log(`handleIncrement ${habit.name}`);
-       const habits = [...this.state.habits]; //...는 똑같은형태의 배열껍데기 복사
+       const habits = [...this.state.habits]; //...는 똑같은형태의 배열껍데기 복사 //스테이트를 직접 수정하면 좋지않다
        const index = habits.indexOf(habit);
        habits[index].count++;
        this.setState({habits: habits});  //key와 value
@@ -29,6 +29,8 @@ class Habits extends Component {
 
     handleDelete = (habit) => {
         console.log(`handleDelete ${habit.name}`);
+        const habits = this.state.habits.filter(item => item.id !== habit.id);
+        this.setState({habits: habits});
     }; 
 
     render() {
