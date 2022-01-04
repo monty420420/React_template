@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Habit from './habit';
+import HabitAdd from './habitAdd';
 
 class Habits extends Component {
    
@@ -19,7 +20,9 @@ class Habits extends Component {
     render() {
         
         return (
-            <ul>
+        <>
+          <HabitAdd />
+           <ul>
                 {
                     this.props.habits.map(habit => (
                         <Habit 
@@ -31,6 +34,8 @@ class Habits extends Component {
                         />
                     ))}
             </ul>
+        </>
+            
         );
     }
 }
