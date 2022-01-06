@@ -35,6 +35,10 @@ handleDelete = (habit) => {
     this.setState({habits: habits});
 }; 
 
+handleAdd = (name) => {
+  const habits = [...this.state.habits, {id: Date.now(), name: name, count: 0}];
+  this.setState({ habits: habits });
+};
 
 
   render() {
@@ -46,6 +50,7 @@ handleDelete = (habit) => {
      onIncrement={this.handleIncrement}
      onDecrement={this.handleDecrement}
      onDelete={this.handleDelete}    
+     onAdd={this.handleAdd}
     />
     </>
     );
