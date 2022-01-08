@@ -20,6 +20,7 @@ class Habits extends Component {
     handleAdd = (name) => {
         this.props.onAdd(name);
     }
+  
 
     render() {
         
@@ -38,6 +39,7 @@ class Habits extends Component {
                         />
                     ))}
             </ul>
+            <button className="habits-reset" onClick={this.props.onReset}>Reset All</button>
         </>
             
         );
