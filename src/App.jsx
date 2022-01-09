@@ -14,18 +14,24 @@ class App extends Component {
 
 handleIncrement = (habit) => { 
    console.log(`handleIncrement ${habit.name}`);
-   const habits = [...this.state.habits]; //...는 똑같은형태의 배열껍데기 복사 //스테이트를 직접 수정하면 좋지않다
-   const index = habits.indexOf(habit);
-   habits[index].count++;
+   const habits = this.state.habits.map(item => {
+    if (item.id === habit.id) {
+      return { ...habit, count: habit.count + 1 }; //새로운 레퍼런스를 가지는 habit오브젝트생성하고 count에 새로운값 대입
+    }
+    return item;
+  });
    this.setState({habits: habits});  //key와 value
 };
 
 handleDecrement = (habit) => {
     console.log(`handleDecrement ${habit.name}`);
-   const habits = [...this.state.habits];
-   const index = habits.indexOf(habit);
-   const count = habits[index].count - 1;
-   habits[index].count = count < 0 ? 0 : count;
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1
+        return { ...habit, count: count < 0 ? 0 : count }; 
+      }
+      return item;
+    });
    this.setState({habits: habits});   
 };
 
@@ -41,10 +47,12 @@ handleAdd = (name) => {
 };
 
 handleReset = () => {
-  const habits = this.state.habits.map(habit => {
-    habit.count = 0;
-    return habit;
-  })
+  const habits = this.state.habits.map(habit => {      
+    if (habit.count !== 0) {        // 0인것도 같이 건드리기 때문에 0이아닌것만 reset시켜주기위해 설정
+      return {...habit, count: 0};
+      }
+      return habit
+    })
   this.setState({ habits });
 }
 
