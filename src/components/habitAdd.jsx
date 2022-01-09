@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react'; //pureComponent로 하면 재랜더링 필요하지않는부분 랜더링안되게 설정가능
 
 
-class HabitAdd extends Component {
+class HabitAdd extends PureComponent {
     inputRef = React.createRef(); //React는 가상dom을 사용하여 dom을 직접사용하지않기 때문에 ref이용
     formRef = React.createRef();
     onSubmit = event => {
